@@ -1,0 +1,61 @@
+﻿@model List<sandysukma_fdtest.Models.Book>
+@{
+    Layout = "~/Views/Shared/_LandingPageLayout.cshtml";
+    ViewData["Title"] = "Daftar Buku";
+}
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+        <input type="text" name="searchAuthor" placeholder="Cari Penulis" class="form-control" />
+    </div>
+    <div class="col-md-2">
+        <select name="rating" class="form-select">
+            <option value="">Pilih Rating</option>
+            @for (int i = 1; i <= 5; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-3">
+        <input type="date" name="date" class="form-control" />
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Cover</th>
+            <th>Judul</th>
+            <th>Penulis</th>
+            <th>Rating</th>
+            <th>Tanggal Upload</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td><img src="@book.ThumbnailUrl" width="60" /></td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Rating</td>
+                <td>@book.UploadedAt.ToString("dd MMM yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                <a class="page-link" href="?page=@i">@i</a>
+            </li>
+        }
+    </ul>
+</nav>

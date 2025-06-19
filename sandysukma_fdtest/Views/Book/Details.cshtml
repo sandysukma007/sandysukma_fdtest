@@ -1,0 +1,25 @@
+﻿@model sandysukma_fdtest.Models.Book
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Detail Buku";
+}
+
+<h2>Detail Buku</h2>
+
+<div class="card mb-3" style="max-width: 600px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Model.ThumbnailUrl" class="img-fluid rounded-start" alt="Cover Buku" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Title</h5>
+                <p class="card-text"><strong>Penulis:</strong> @Model.Author</p>
+                <p class="card-text"><strong>Deskripsi:</strong><br />@Model.Description</p>
+                <p class="card-text"><strong>Rating:</strong> @Model.Rating / 5</p>
+                <a asp-action="Index" class="btn btn-secondary">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
